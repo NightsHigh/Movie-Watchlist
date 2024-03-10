@@ -1,0 +1,176 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* TOP DIV */
+.title-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5em 1.5em 0 1.5em;
+    background-image: url("./images/backgroundTop") 
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 3em;
+}
+
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.titles-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    max-width: 800px;
+}
+
+.search-container {
+    display: flex;
+    width: 100%;
+    max-width: 800px; 
+    margin-top: 4em;
+    justify-content: center; 
+}
+
+/* SEARCH BAR */
+.search-bar, button {
+    font-size: 1.5em;
+    background-color: white;
+    cursor: pointer;
+}
+
+.search-bar {
+    flex-grow: 1;
+    border: 2px solid lightgray;
+    border-radius: 0.6em 0 0 0.6em;
+    padding: 0.5em 1em;
+    margin-right: -2px;
+}
+
+button {
+    padding: 0.5em 1em;
+    border: 2px solid lightgray;
+    border-radius: 0 0.6em 0.6em 0;
+    border-left: none; 
+}
+
+.search-bar:focus, button:focus {
+    outline: none;
+}
+
+/* MOVIE DIV */
+#movie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 1em; 
+}
+
+.movie-container div {
+    margin-bottom: 2em; 
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1em; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 70%; 
+    max-width: 600px;
+}
+
+.movie-element {
+    display: flex;
+    align-items: flex-start; 
+    margin-bottom: 2em;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 80%;
+    max-width: 900px; 
+}
+
+.movie-poster {
+    flex-shrink: 0; 
+    width: 200px; 
+    height: auto; 
+    margin-right: 20px; 
+    border-radius: 4px;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column; 
+    border: none;
+}
+
+.movie-title, .movie-genre, .movie-runtime, .movie-rating, .movie-plot {
+    margin: 0.5em 0;
+}
+
+.add-to-watchlist-btn {
+    font-size: 0.9em;
+    width: 30%;
+    align-self: center;
+    padding: 0;
+}
+
+.title-watchlist-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* READ MORE BUTTON */
+.read-more {
+    font-size: 0.8em;
+    border-radius: 0.8em;
+    cursor: pointer;
+}
+
+.read-more:focus {
+    outline: 1px solid black; 
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 600px) {
+    .movie-poster {
+        width: 150px;
+        align-self: center;
+    }
+
+    .movie-info {
+        font-size: 1em;
+        align-self: center;
+        margin-top: 1em;
+    }
+
+    .movie-element {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-bar, button {
+        width: 80%;
+        margin: 0;
+    }
+
+    button {
+        margin: 0;
+    }
+
+    h1 {
+        font-size: 2.5em; 
+    }
+}
