@@ -4,7 +4,7 @@ const searchBar = document.getElementById('search-bar');
 searchBtn.addEventListener('click', () => {
     const title = searchBar.value;
     if (title) {
-        fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(title)}&apikey=1bab4d1`)
+        fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(title)}&apikey=[YOUR API KEY]`)
         .then(response => response.json())
             .then(data => {
             if (data.Response === "True") {
