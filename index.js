@@ -4,10 +4,10 @@ const searchBar = document.getElementById('search-bar');
 searchBtn.addEventListener('click', () => {
     const title = searchBar.value;
     if (title) {
-        fetch(`https://www.omdbapi.com/?s=${encodeURIComponent(title)}&apikey=[YOUR API KEY]`)
-        .then(response => response.json())
+        fetch("/.netlify/functions/searchMovies?title=Inception")
+            .then(response => response.json())
             .then(data => {
-            if (data.Response === "True") {
+            if (data.response === "True") {
                 displayMovies(data.Search);
             } else {
                 alert('No results found');
@@ -27,14 +27,14 @@ function truncateSummary(summary, maxLength) {
 
 function displayMovies(movies) {
     const movieContainer = document.getElementById('movie-container');
-    movieContainer.innerHTML = ''; // Clear previous results
+    movieContainer.innerHTML = '';
 
     movies.forEach((movie) => {
-        const detailsUrl = `https://www.omdbapi.com/?i=${movie.imdbID}&plot=short&apikey=1bab4d1`;
+        const detailsUrl = `/.netlify/functions/getMovieDetails?imdbID=${movie.imdbID}`;
 
         fetch(detailsUrl)
-            .then(response => response.json())
-            .then(details => {
+        .then(response => response.json())
+        .then(details => {
                 const movieElement = document.createElement('div');
                 movieElement.classList.add('movie-element');
 
@@ -57,6 +57,7 @@ function displayMovies(movies) {
                 movieContainer.appendChild(movieElement);
 
                 // Event listener for the Read More button
+        
 // Event listener for the Read More button
 const readMoreBtn = movieElement.querySelector('.read-more');
 if (readMoreBtn) {
