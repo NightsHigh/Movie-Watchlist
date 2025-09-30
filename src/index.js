@@ -17,13 +17,13 @@ searchBtn.addEventListener('click', () => {
     }
 });
 
-function safeText(v, fallback = "") {
-  return typeof v === "string" && v.trim() ? v : fallback
+function safeText(v, fallback = '') {
+  return typeof v === 'string' && v.trim() ? v : fallback
 }
 
 function truncateSummary(summary, maxLength) {
-  const s = safeText(summary, "")
-  return s.length > maxLength ? s.substring(0, maxLength) + "..." : s
+  const s = safeText(summary, '')
+  return s.length > maxLength ? s.substring(0, maxLength) + '...' : s
 }
 
 
@@ -49,7 +49,7 @@ function displayMovies(movies) {
                             <span class="movie-genre">${details.Genre}</span>
                         </div>
                         <p class="movie-rating">⭐ ${details.imdbRating}</p>
-                        <p class="movie-summary">${truncateSummary(details.Plot, 150)} <button class="read-more">Read more</button></p>
+                        <p class="movie-summary">${truncateSummary(details?.Plot ?? "", 150)} <button class="read-more">Read more</button></p>
                         <button class="watchlist-btn">+ Watchlist</button>
                     </div>
 
