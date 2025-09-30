@@ -19,7 +19,7 @@ searchBtn.addEventListener('click', () => {
         .catch(err => console.error("Error fetching data:", err))
     }
 });
-¨
+
 // Ensures a non-empty trimmed string is returned, or falls back to a default
 function toNonEmptyString(value, fallback = '') {
   return typeof value === 'string' && value.trim() ? value : fallback
