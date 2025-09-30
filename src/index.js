@@ -4,17 +4,17 @@ const searchBar = document.getElementById('search-bar');
 searchBtn.addEventListener('click', () => {
     const title = searchBar.value;
     if (title) {
-        fetch("/.netlify/functions/searchMovies?title=Inception")
-            .then(response => response.json())
-            .then(data => {
-            if (data.response === "True") {
-                displayMovies(data.Search);
+        fetch(`/.netlify/functions/searchMovies?title=${encodeURIComponent(title)}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.Response === "True") {
+            displayMovies(data.Search)
             } else {
-                alert('No results found');
+            alert("No results found")
             }
-            })
-            .catch(error => console.error('Error fetching data:', error));
-        }
+        })
+        .catch(err => console.error("Error fetching data:", err))
+    }
 });
 
 function truncateSummary(summary, maxLength) {
