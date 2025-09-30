@@ -17,13 +17,15 @@ searchBtn.addEventListener('click', () => {
     }
 });
 
-function truncateSummary(summary, maxLength) {
-  if (summary.length > maxLength) {
-    return summary.substring(0, maxLength) + '...';
-  } else {
-    return summary;
-  }
+function safeText(v, fallback = "") {
+  return typeof v === "string" && v.trim() ? v : fallback
 }
+
+function truncateSummary(summary, maxLength) {
+  const s = safeText(summary, "")
+  return s.length > maxLength ? s.substring(0, maxLength) + "..." : s
+}
+
 
 function displayMovies(movies) {
     const movieContainer = document.getElementById('movie-container');

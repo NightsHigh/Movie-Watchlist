@@ -1,29 +1,21 @@
+// netlify/functions/getMovieDetails.js
 export async function handler(event) {
   try {
-    const API_KEY = process.env.MOVIE_API_KEY
-    const { title } = event.queryStringParameters
+    const { imdbID } = event.queryStringParameters || {}
+    const apiKey = process.env.MOVIE_APIKEY
 
-    if (!title) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: "Missing title parameter" }),
-      }
+    if (!imdbID) {
+      return { statusCode: 400, body: JSON.stringify({ error: "Missing imdbID parameter" }) }
+    }
+    if (!apiKey) {
+      return { statusCode: 500, body: JSON.stringify({ error: "Missing MOVIE_APIKEY" }) }
     }
 
-    const response = await fetch(
-      `https://www.omdbapi.com/?s=${encodeURIComponent(title)}&apikey=${API_KEY}`
-    )
+    const res = await fetch(`https://www.omdbapi.com/?i=${encodeURIComponent(imdbID)}&plot=full&apikey=${apiKey}`)
+    const data = await res.json()
 
-    const data = await response.json()
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify(data),
-    }
+    return { statusCode: 200, body: JSON.stringify(data) }
   } catch (err) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Server error", details: err.message }),
-    }
+    return { statusCode: 500, body: JSON.stringify({ error: "Server error", details: err.message }) }
   }
 }
