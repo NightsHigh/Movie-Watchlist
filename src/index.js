@@ -25,7 +25,7 @@ function truncateSummary(summary, maxLength) {
   }
 }
 
-function displayMovies(movies) {
+ovies(movies) {
     const movieContainer = document.getElementById('movie-container');
     movieContainer.innerHTML = '';
 
@@ -96,15 +96,6 @@ function addToWatchlist(movieDetails) {
     localStorage.setItem('watchlist', JSON.stringify(watchlist));
     
     alert('Added to watchlist');
-}
-
-
-function truncateSummary(summary, maxLength) {
-    if (summary.length > maxLength) {
-        return summary.substring(0, maxLength) + '...'; 
-    } else {
-        return summary; 
-    }
 }
 
 
