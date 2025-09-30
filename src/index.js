@@ -25,7 +25,7 @@ function truncateSummary(summary, maxLength) {
   }
 }
 
-ovies(movies) {
+function displayMovies(movies) {
     const movieContainer = document.getElementById('movie-container');
     movieContainer.innerHTML = '';
 
