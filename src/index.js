@@ -4,6 +4,9 @@ const searchBar = document.getElementById('search-bar');
 searchBtn.addEventListener('click', () => {
     const title = searchBar.value;
     if (title) {
+        // encodeURIComponent
+        //  encodes a URI by replacing each instance of certain characters by one, two, three, 
+        // or four escape sequences representing the UTF-8 encoding of the character
         fetch(`/.netlify/functions/searchMovies?title=${encodeURIComponent(title)}`)
         .then(res => res.json())
         .then(data => {
@@ -16,14 +19,16 @@ searchBtn.addEventListener('click', () => {
         .catch(err => console.error("Error fetching data:", err))
     }
 });
-
-function safeText(v, fallback = '') {
-  return typeof v === 'string' && v.trim() ? v : fallback
+¨
+// Ensures a non-empty trimmed string is returned, or falls back to a default
+function toNonEmptyString(value, fallback = '') {
+  return typeof value === 'string' && value.trim() ? value : fallback
 }
 
+// Shortens a string to the given length
 function truncateSummary(summary, maxLength) {
-  const s = safeText(summary, '')
-  return s.length > maxLength ? s.substring(0, maxLength) + '...' : s
+  const safe = toNonEmptyString(summary, '')
+  return safe.length > maxLength ? safe.substring(0, maxLength) + '...' : safe
 }
 
 
@@ -57,8 +62,6 @@ function displayMovies(movies) {
 
                 movieElement.innerHTML = movieHTML;
                 movieContainer.appendChild(movieElement);
-
-                // Event listener for the Read More button
         
 // Event listener for the Read More button
 const readMoreBtn = movieElement.querySelector('.read-more');
@@ -76,7 +79,6 @@ if (readMoreBtn) {
 }
 
 
-
                 // Event listener for the Watchlist button
                 const watchlistBtn = movieElement.querySelector('.watchlist-btn');
                 watchlistBtn.addEventListener('click', function() {
@@ -89,7 +91,7 @@ if (readMoreBtn) {
 
 function addToWatchlist(movieDetails) {
     // Retrieve existing watchlist from localStorage, or initialize to an empty array if none exists
-    let watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+    const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
     
     // Add the new movieDetails to the watchlist array
     watchlist.push(movieDetails);
